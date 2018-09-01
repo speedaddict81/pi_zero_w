@@ -72,36 +72,6 @@ sed -i /boot/cmdline.txt -e "s/console=ttyAMA0,[0-9]\+ //"
 echo "${GREEN}...done${WHITE}"
 
 
-##############################################################
-##  RPi 0/2 check to enable Edimax wifi dongle option
-##############################################################
-echo
-echo "${YELLOW}**** RPi 0/2 check to enable Edimax wifi dongle option... *****${WHITE}"
-
-if [ "$REVISION" == "$RPI2BxREV" ] || [ "$REVISION" == "$RPI2ByREV" ] || [ "$REVISION" == "$RPI0xREV" ] || [ "$REVISION" == "$RPI0yREV" ]; then
-    echo "${MAGENTA}copying the hostapd-edimax binary...${WHITE}"
-
-    rm -f /usr/sbin/hostapd-edimax
-    cd ${SCRIPTDIR}/files
-
-    # gunzip -k hostapd.gz
-    gunzip -c hostapd.gz >hostapd
-    if [ ! -f ./hostapd ]; then
-        echo "${BOLD}${RED}ERROR - hostapd doesn't exist, exiting...${WHITE}${NORMAL}"
-        exit
-    fi
-
-    # install the binary
-    mv ./hostapd /usr/sbin/hostapd-edimax
-    chmod +x /usr/sbin/hostapd-edimax
-
-    if ! grep -q "options 8192cu rtw_power_mgnt=0 rtw_enusbss=0" "/etc/modprobe.d/8192cu.conf"; then
-        echo "options 8192cu rtw_power_mgnt=0 rtw_enusbss=0" >>/etc/modprobe.d/8192cu.conf
-    fi
-fi
-
-echo "${GREEN}...done${WHITE}"
-
 
 ##############################################################
 ##  I2C setup
