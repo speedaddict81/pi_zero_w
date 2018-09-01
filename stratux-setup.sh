@@ -131,11 +131,6 @@ echo "${GREEN}...done${WHITE}"
 echo
 echo "${YELLOW}**** Installing dependencies... *****${WHITE}"
 
-if [ "$REVISION" == "$RPI2BxREV" ] || [ "$REVISION" == "$RPI2ByREV" ]  || [ "$REVISION" == "$RPI3BxREV" ] || [ "$REVISION" == "$RPI3ByREV" ] || [ "$REVISION" == "$RPI0xREV" ] || [ "$REVISION" == "$RPI0yREV" ]|| [ "$REVISION" == "$RPIZEROW" ]; then
-    apt-get install -y rpi-update
-    rpi-update
-fi
-
 apt-get update
 apt-mark hold plymouth
 apt-get dist-upgrade -y
@@ -159,11 +154,11 @@ apt-get install -y automake
 apt-get remove -y hostapd
 apt-get install -y hostapd
 apt-get install -y pkg-config
-apt-get install -y libjpeg-dev i2c-tools python-smbus python-pip python-dev python-pil python-daemon screen
+apt-get install -y libjpeg-dev i2c-tools python-smbus python-pip
 apt-get install -y golang-go
-pip install wiringpi
+#pip install wiringpi
 #apt-get purge golang*
-cd && git clone https://github.com/WiringPi/WiringPi.git && cd WiringPi/wiringPi && make static && make install-static
+#cd && git clone https://github.com/WiringPi/WiringPi.git && cd WiringPi/wiringPi && make static && make install-static
 echo "${GREEN}...done${WHITE}"
 
 
@@ -259,6 +254,7 @@ if ! grep -q "blacklist dvb_usb_rtl2832u" "/etc/modprobe.d/rtl-sdr-blacklist.con
     echo blacklist dvb_usb_rtl2832u >>/etc/modprobe.d/rtl-sdr-blacklist.conf
 fi
 
+echo "${GREEN}...done${WHITE}"
 
 ##############################################################
 ##  Go environment setup
@@ -324,7 +320,7 @@ cd /root
 
 if [ "$MACHINE" == "$ARM6L" ] || [ "$MACHINE" == "$ARM7L" ]; then
 	 echo "${BOLD}${WHITE}  golang install...${WHITE}${NORMAL}"
-	     apt-get install golang-go
+	     #apt-get install golang-go
     #### For RPi-2/3, is there any disadvantage to using the armv6l compiler?
     #wget https://storage.googleapis.com/golang/go1.7.2.linux-armv6l.tar.gz --no-check-certificate
     #tar -zxvf go1.7.2.linux-armv6l.tar.gz
@@ -392,7 +388,7 @@ echo "${YELLOW}**** Stratux build and installation... *****${WHITE}"
 cd /root
 
 rm -rf stratux
-git clone https://github.com/cyoung/stratux --recursive
+git clone https://github.com/speedaddict81/stratux --recursive
 cd stratux
 git fetch --tags
 tag=$(git describe --tags `git rev-list --tags --max-count=1`)
@@ -530,13 +526,13 @@ echo "${GREEN}...done${WHITE}"
 ##############################################################
 ## Copying fancontrol.py file
 ##############################################################
-echo
-echo "${YELLOW}**** Copying fancontrol.py file... *****${WHITE}"
+#echo
+#echo "${YELLOW}**** Copying fancontrol.py file... *****${WHITE}"
 
-chmod 755 ${SCRIPTDIR}/files/fancontrol.py
-cp ${SCRIPTDIR}/files/fancontrol.py /usr/bin/fancontrol.py
+#chmod 755 ${SCRIPTDIR}/files/fancontrol.py
+#cp ${SCRIPTDIR}/files/fancontrol.py /usr/bin/fancontrol.py
 
-echo "${GREEN}...done${WHITE}"
+#echo "${GREEN}...done${WHITE}"
 
 
 ##############################################################
