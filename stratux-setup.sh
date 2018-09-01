@@ -135,26 +135,15 @@ apt-get update
 apt-mark hold plymouth
 apt-get dist-upgrade -y
 apt-get upgrade -y
-apt-get install -y git
+apt-get install -y git mercurial
 git config --global http.sslVerify false
-apt-get install -y iw
-apt-get install -y lshw
-apt-get install -y wget
+apt-get install -y iw lshw wget cmake tcpdump libusb-1.0-0.dev build-essential
 apt-get install -y isc-dhcp-server
-apt-get install -y tcpdump
-apt-get install -y cmake
-apt-get install -y libusb-1.0-0.dev
-apt-get install -y build-essential
-apt-get install -y mercurial
-apt-get install -y autoconf
-apt-get install -y fftw3
-apt-get install -y fftw3-dev
-apt-get install -y libtool
-apt-get install -y automake
+apt-get install -y autoconf fftw3 fftw3-dev libtool automake
+apt-get install -y libjpeg-dev i2c-tools python-smbus python-pip libi2c-dev
 apt-get remove -y hostapd
 apt-get install -y hostapd
 apt-get install -y pkg-config
-apt-get install -y libjpeg-dev i2c-tools python-smbus python-pip
 apt-get install -y golang-go
 #pip install wiringpi
 #apt-get purge golang*
