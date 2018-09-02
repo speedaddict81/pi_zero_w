@@ -133,8 +133,8 @@ echo "${YELLOW}**** Installing dependencies... *****${WHITE}"
 
 apt-get update
 apt-mark hold plymouth
-apt-get dist-upgrade -y
-apt-get upgrade -y
+#apt-get dist-upgrade -y
+#apt-get upgrade -y
 apt-get install -y git mercurial
 git config --global http.sslVerify false
 apt-get install -y iw lshw wget cmake tcpdump libusb-1.0-0.dev build-essential
